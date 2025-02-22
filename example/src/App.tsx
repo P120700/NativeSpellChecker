@@ -17,7 +17,7 @@ function App(): React.JSX.Element {
   >(false);
 
 
-  function checkSpell() {
+  const checkSpell = () => {
     const res = isValidWord(value ?? '');
     setIsValid(res)
   }
