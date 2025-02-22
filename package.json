@@ -45,6 +45,19 @@
     "prepare": "bob build",
     "release": "release-it"
   },
+  "codegenConfig": {
+    "name": "RNTurboSpellcheckModuleSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "outputDir": {
+      "ios": "ios/generated",
+      "android": "android/generated"
+    },
+    "android": {
+      "javaPackageName": "com.turbospellcheckmodule"
+    },
+    "includesGeneratedCode": true
+  },
   "keywords": [
     "react-native",
     "ios",
@@ -181,19 +194,6 @@
         }
       ]
     ]
-  },
-  "codegenConfig": {
-    "name": "RNTurboSpellcheckModuleSpec",
-    "type": "modules",
-    "jsSrcsDir": "src",
-    "outputDir": {
-      "ios": "ios/generated",
-      "android": "android/generated"
-    },
-    "android": {
-      "javaPackageName": "com.turbospellcheckmodule"
-    },
-    "includesGeneratedCode": true
   },
   "create-react-native-library": {
     "type": "turbo-module",

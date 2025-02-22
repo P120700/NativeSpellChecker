@@ -1,20 +1,57 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'react-native-turbo-spellcheck-module';
+import React from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  Button,
+} from 'react-native';
 
-const result = multiply(3, 7);
+import { isValidWord } from 'react-native-turbo-spellcheck-module';
 
-export default function App() {
+function App(): React.JSX.Element {
+  const [value, setValue] = React.useState<string | null>(null);
+
+  const [isValid, setIsValid] = React.useState<
+    boolean
+  >(false);
+
+
+  function checkSpell() {
+    const res = isValidWord(value ?? '');
+    setIsValid(res)
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <Text style={styles.text}>
+        Is Valid: {isValid ? 'Yes' : 'No'}
+      </Text>
+      <TextInput
+        placeholder="Enter the text you want to store"
+        style={styles.textInput}
+        onChangeText={setValue}
+      />
+      
+      <Button title="Check" onPress={checkSpell} />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  text: {
+    margin: 10,
+    fontSize: 20,
+  },
+  textInput: {
+    margin: 10,
+    height: 40,
+    borderColor: 'black',
+    borderWidth: 1,
+    paddingLeft: 5,
+    paddingRight: 5,
+    borderRadius: 5,
   },
 });
+
+export default App;
